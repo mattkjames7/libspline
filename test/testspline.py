@@ -4,7 +4,7 @@ import ctypes as ct
 #from Spline import Spline
 from  scipy.interpolate import InterpolatedUnivariateSpline
 
-libspline = ct.CDLL("./libspline.so")
+libspline = ct.CDLL("../lib/libspline/libspline.so")
 
 #define some dtypes
 c_char_p = ct.c_char_p
@@ -103,14 +103,13 @@ def testspline(fig=None,maps=[1,1,0,0]):
 	
 	
 	ax.scatter(x0,y0)
-	ax.plot(x1,y1,label='C')
+	ax.plot(x1,y1,label='C++')
 	ax.plot(x1,y1p+0.1,label='Py')
 	#ax.plot(x1,y1p2+0.2,label='Py 2')
 	ax.plot(x1,y1sp+0.2,label='scipy')
 	ax.set_ylim(-2.0,2.0)
 	ax.legend()
-	plt.show()
-	return ax
+	plt.savefig('testspline.png')
 
 
 if __name__ == '__main__':

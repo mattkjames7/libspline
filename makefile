@@ -49,6 +49,7 @@ else
 endif
 
 clean:
+	cd test; make clean
 	-rm -v lib/libspline/libspline.so
 	-rm -v lib/libspline/libspline.dll
 	-rmdir -v lib/libspline
@@ -78,3 +79,6 @@ ifeq ($(OS),Linux)
 else
 	rm -v $(PREFIX)/lib/libspline.dylib
 endif
+
+test:
+	cd test; make all

@@ -11,6 +11,13 @@ ifndef BUILDDIR
 	BUILDDIR=../build
 endif
 
+OS=$(shell uname -s)
+ifeq ($(OS),Linux)
+	LIBFILE=libspline.so
+else
+	LIBFILE=libspline.dylib
+endif
+
 all: obj lib
 
 obj:
@@ -22,7 +29,7 @@ winobj:
 	$(CCWo) libspline.cc -o $(BUILDDIR)/libspline.o
 
 lib: 
-	$(CC) -shared -o ../lib/libspline/libspline.so $(BUILDDIR)/*.o
+	$(CC) -shared -o ../lib/libspline/$(LIBFILE) $(BUILDDIR)/*.o
 	
 winlib: 
 	$(CCW) -shared -o ../lib/libspline/libspline.dll $(BUILDDIR)/*.o
