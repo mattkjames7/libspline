@@ -221,7 +221,7 @@ def CombineHeaders():
 
 
     #create the output file
-    with open('include/libspline.h','w') as f:
+    with open('include/spline.h','w') as f:
         f.writelines(out)
         print('Saved header file')
 

@@ -9,14 +9,21 @@ ifeq ($(OS),Windows_NT)
 	MD=mkdir
 else
 #linux and mac here
+	OS=$(shell uname -s)
 	MD=mkdir -p
 endif
 
-.PHONY: all lib obj clean header
+ifeq ($(PREFIX),)
+#install path
+	PREFIX=/usr/local
+endif
 
-all: obj lib header
 
-windows: winobj winlib header
+.PHONY: all lib obj clean header test install uninstall
+
+all: obj lib
+
+windows: winobj winlib
 
 obj:
 	$(MD) $(BUILDDIR)
@@ -47,3 +54,27 @@ clean:
 	-rmdir -v lib/libspline
 	-rm -v build/*.o
 	-rmdir -v build
+
+install:
+	cp -v include/spline.h $(PREFIX)/include
+	cp -v include/splinec.h $(PREFIX)/include
+
+ifeq ($(OS),Linux)
+	cp -v lib/libspline/libspline.so $(PREFIX)/lib
+	chmod 0775 $(PREFIX)/lib/libspline.so
+	ldconfig
+else
+	cp -v lib/libspline/libspline.dylib $(PREFIX)/lib
+	chmod 0775 $(PREFIX)/lib/libspline.dylib
+endif
+
+
+uninstall:
+	rm -v $(PREFIX)/include/spline.h
+	rm -v $(PREFIX)/include/splinec.h
+ifeq ($(OS),Linux)
+	rm -v $(PREFIX)/lib/libspline.so
+	ldconfig
+else
+	rm -v $(PREFIX)/lib/libspline.dylib
+endif
