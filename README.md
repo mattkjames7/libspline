@@ -20,7 +20,7 @@ Under windows, run the batch file:
 
 ## Usage
 
-This package includes two headers: one for C (`splinec.h`) and one for C++ (`spline.c`). Below are two very simple examples of how to use this code.
+This package includes a header which is compatible with both C andC++ (`spline.c`). Below are two very simple examples of how to use this code.
 
 ### C++
 
@@ -88,7 +88,7 @@ This is a C example, which would work in C++ also. The `spline()` wrapper functi
 ```c
 /* contents of cexample.c */
 #include <stdio.h>
-#include <splinec.h>
+#include <spline.h>
 
 int main() {
 

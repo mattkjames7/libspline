@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/splinec.h"
+#include "../include/spline.h"
 
 int main() {
 
