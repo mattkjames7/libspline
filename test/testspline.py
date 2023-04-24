@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import ctypes as ct
 #from Spline import Spline
 from  scipy.interpolate import InterpolatedUnivariateSpline
+from scipy.interpolate import interp1d
 
 libspline = ct.CDLL("../lib/libspline.so")
 
@@ -100,8 +101,7 @@ def testspline(fig=None,maps=[1,1,0,0]):
 	#y1p2 = spl.Interpolate(x1)
 	spspl = InterpolatedUnivariateSpline(x0,y0)
 	y1sp = spspl(x1)
-	
-	
+
 	ax.scatter(x0,y0)
 	ax.plot(x1,y1,label='C++')
 	ax.plot(x1,y1p+0.1,label='Py')

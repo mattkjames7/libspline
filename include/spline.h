@@ -1,19 +1,21 @@
+
 #ifndef __LIBSPLINE_H__
 #define __LIBSPLINE_H__
+
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #define LIBSPLINE_VERSION_MAJOR 0
 #define LIBSPLINE_VERSION_MINOR 1
-#define LIBSPLINE_VERSION_PATCH 0
+#define LIBSPLINE_VERSION_PATCH 1
 
-#define _USE_MATH_DEFINES
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-	void spline(int n0, double *x0, double *y0, 
+		void spline(int n0, double *x0, double *y0, 
 				int n1, double *x1, double *y1);
 #ifdef __cplusplus
 }
@@ -35,3 +37,4 @@ class Spline {
 
 #endif
 #endif
+	
