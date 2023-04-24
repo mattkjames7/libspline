@@ -4,7 +4,7 @@ import ctypes as ct
 #from Spline import Spline
 from  scipy.interpolate import InterpolatedUnivariateSpline
 
-libspline = ct.CDLL("../lib/libspline/libspline.so")
+libspline = ct.CDLL("../lib/libspline.so")
 
 #define some dtypes
 c_char_p = ct.c_char_p

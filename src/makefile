@@ -29,8 +29,8 @@ winobj:
 	$(CCWo) libspline.cc -o $(BUILDDIR)/libspline.o
 
 lib: 
-	$(CC) -shared -o ../lib/libspline/$(LIBFILE) $(BUILDDIR)/*.o
+	$(CC) -shared -o ../lib/$(LIBFILE) $(BUILDDIR)/*.o
 	
 winlib: 
-	$(CCW) -shared -o ../lib/libspline/libspline.dll $(BUILDDIR)/*.o
+	$(CCW) -shared -o ../lib/libspline.dll $(BUILDDIR)/*.o
 	

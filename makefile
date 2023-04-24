@@ -1,15 +1,21 @@
 
 
 ifndef BUILDDIR 
-	export BUILDDIR=$(shell pwd)/build
+	BUILDDIR=$(shell pwd)/build
 endif
 
 ifeq ($(OS),Windows_NT)
 #windows stuff here
 	MD=mkdir
+	LIBFILE=libspline.dll
 else
 #linux and mac here
 	OS=$(shell uname -s)
+	ifeq ($(OS),Linux)
+		LIBFILE=libspline.so
+	else
+		LIBFILE=libspline.dylib
+	endif
 	MD=mkdir -p
 endif
 
@@ -30,7 +36,7 @@ obj:
 	cd src; make obj
 
 lib:
-	$(MD) lib/libspline
+	$(MD) lib
 	cd src; make lib
 
 winobj:
@@ -38,7 +44,7 @@ winobj:
 	cd src; make winobj
 
 winlib: 
-	$(MD) lib/libspline
+	$(MD) lib
 	cd src; make winlib
 
 header:
@@ -50,9 +56,9 @@ endif
 
 clean:
 	cd test; make clean
-	-rm -v lib/libspline/libspline.so
-	-rm -v lib/libspline/libspline.dll
-	-rmdir -v lib/libspline
+	-rm -v lib/libspline.so
+	-rm -v lib/libspline.dll
+	-rm -v lib/libspline.dylib
 	-rm -v build/*.o
 	-rmdir -v build
 

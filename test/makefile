@@ -10,9 +10,9 @@ CCW=x86_64-w64-mingw32-g++-win32 $(CFLAGS)
 
 OS=$(shell uname -s)
 ifeq ($(OS),Linux) 
-	LDFLAGS=-Wl,-rpath='$$ORIGIN/../lib/libspline' -L ../lib/libspline -lspline
+	LDFLAGS=-Wl,-rpath='$$ORIGIN/../lib' -L ../lib -lspline
 else 
-	LDFLAGS=-L ../lib/libspline -lspline
+	LDFLAGS=-L ../lib -lspline
 endif
 
 all:
