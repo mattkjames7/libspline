@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LIBSPLINE_VERSION_MAJOR 0
-#define LIBSPLINE_VERSION_MINOR 2
-#define LIBSPLINE_VERSION_PATCH 0
+#define LIBSPLINE_VERSION_MINOR 1
+#define LIBSPLINE_VERSION_PATCH 1
 
 #ifdef __cplusplus
 extern "C" {

@@ -18,7 +18,12 @@ else
 	LIBFILE=libspline.dylib
 endif
 
-all: obj lib
+all: header obj lib
+
+header:
+	$(CC) trimstring.cc generateheader.cc -o generateheader
+	./generateheader
+	-rm generateheader
 
 obj:
 	$(CCo) spline.cc -o $(BUILDDIR)/spline.o

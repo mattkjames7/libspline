@@ -27,7 +27,10 @@ endif
 
 .PHONY: all lib obj clean header test install uninstall
 
-all: obj lib
+all:
+	$(MD) $(BUILDDIR)
+	$(MD) lib
+	cd src; make all
 
 windows: winobj winlib
 
@@ -48,11 +51,12 @@ winlib:
 	cd src; make winlib
 
 header:
-ifneq (,$(shell which python3))
-	python3 generateheader.py
-else
-	@echo "python3 command doesn't appear to exist - skipping header regeneration..."
-endif
+	cd src; make header
+# ifneq (,$(shell which python3))
+# 	python3 generateheader.py
+# else
+# 	@echo "python3 command doesn't appear to exist - skipping header regeneration..."
+# endif
 
 clean:
 	cd test; make clean
