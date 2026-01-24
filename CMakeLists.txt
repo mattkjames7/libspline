@@ -1,4 +1,4 @@
-cmake_minimum_required(3.10)
+cmake_minimum_required(VERSION 3.10)
 project(
     spline
     VERSION 0.3.0
@@ -13,7 +13,7 @@ option(BUILD_TESTING "Build the testing tree." OFF)
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 option(BUILD_STATIC_LIBS "Build static library" OFF)
 
-if (not BUILD_SHARED_LIBS AND not BUILD_STATIC_LIBS)
+if (NOT BUILD_SHARED_LIBS AND NOT BUILD_STATIC_LIBS)
     message(FATAL_ERROR "At least one of BUILD_SHARED_LIBS or BUILD_STATIC_LIBS must be ON")
 endif()
 
