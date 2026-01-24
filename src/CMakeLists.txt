@@ -2,6 +2,7 @@
 if (BUILD_SHARED_LIBS)
     add_library(libspline_shared SHARED)
     set_target_properties(libspline_shared PROPERTIES OUTPUT_NAME spline)
+    set_target_properties(libspline_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
     target_sources(libspline_shared PRIVATE
         libspline.cc
         spline.cc
@@ -16,6 +17,7 @@ endif()
 if (BUILD_STATIC_LIBS)  
     add_library(libspline_static STATIC)
     set_target_properties(libspline_static PROPERTIES OUTPUT_NAME spline)
+    set_target_properties(libspline_static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
     target_sources(libspline_static PRIVATE
         libspline.cc
         spline.cc
