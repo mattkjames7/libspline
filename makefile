@@ -50,13 +50,13 @@ winlib:
 	$(MD) lib
 	cd src; make winlib
 
-header:
-	cd src; make header
-# ifneq (,$(shell which python3))
-# 	python3 generateheader.py
-# else
-# 	@echo "python3 command doesn't appear to exist - skipping header regeneration..."
-# endif
+# header:
+# 	cd src; make header
+# # ifneq (,$(shell which python3))
+# # 	python3 generateheader.py
+# # else
+# # 	@echo "python3 command doesn't appear to exist - skipping header regeneration..."
+# # endif
 
 clean:
 	cd test; make clean
