@@ -63,7 +63,7 @@ if(BUILD_SHARED_LIBS AND WIN32)
     # Copy the spline DLL to the test exe dir
     add_custom_command(TARGET test_spline POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:libspline>
+            $<TARGET_FILE:libspline_shared>
             $<TARGET_FILE_DIR:test_spline>
     )
     # Copy GoogleTest DLLs to the test exe dir (they're in bin/)
