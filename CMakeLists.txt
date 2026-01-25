@@ -9,7 +9,7 @@ project(
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(BUILD_TESTING "Build the testing tree." OFF)
+option(BUILD_TESTING "Build the testing tree." ON)
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 option(BUILD_STATIC_LIBS "Build static library" OFF)
 
@@ -29,6 +29,6 @@ add_subdirectory(src)
 
 if (BUILD_TESTING)
     enable_testing()
-    add_subdirectory(tests)
+    add_subdirectory(test)
 endif()
 
