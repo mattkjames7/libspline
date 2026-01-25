@@ -27,7 +27,7 @@ add_executable(test_spline test.cc)
 # Determine which datetime library to link against
 set(SPLINE_LIB_TARGET "")
 if(WIN32)
-    set(SPLINE_LIB_TARGET libspline)
+    set(SPLINE_LIB_TARGET libspline_shared)
 elseif(TARGET libspline_shared)
     set(SPLINE_LIB_TARGET libspline_shared)
 elseif(TARGET libspline_static)
