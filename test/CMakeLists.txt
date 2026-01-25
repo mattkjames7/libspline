@@ -53,9 +53,6 @@ if(BUILD_SHARED_LIBS)
     )
 endif()
 
-include(GoogleTest)
-gtest_discover_tests(test_spline)
-
 # On Windows the test executable won't find DLLs located in other directories
 # (RPATH doesn't apply). If we built shared libs, copy the spline DLL
 # next to the test executable so it can be loaded at runtime in CI.
@@ -75,4 +72,11 @@ if(BUILD_SHARED_LIBS AND WIN32)
             $<TARGET_FILE:gtest_main>
             $<TARGET_FILE_DIR:test_spline>
     )
+    
+    # On Windows with shared libs, skip automatic test discovery since DLLs
+    # aren't available during CMake configuration. Register the test manually instead.
+    add_test(NAME test_spline COMMAND test_spline WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
+else()
+    include(GoogleTest)
+    gtest_discover_tests(test_spline)
 endif()
