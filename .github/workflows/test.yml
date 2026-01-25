@@ -9,6 +9,8 @@ on:
   schedule:
     - cron: '0 0 1 * *'  # Runs at midnight UTC on the 1st of every month
 
+run-name: "Build and Test Library"
+
 jobs:
   build_linux:
     runs-on: "ubuntu-latest"
