@@ -6,6 +6,6 @@
 #endif
 
 extern "C" {
-	void spline(int n0, double *x0, double *y0, 
-				int n1, double *x1, double *y1);
+	void libspline_spline(int n0, double *x0, double *y0, 
+					int n1, double *x1, double *y1);
 }

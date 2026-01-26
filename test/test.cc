@@ -1,5 +1,6 @@
 #include <spline.h>
 #include <gtest/gtest.h>
+#include <cmath>
 
 
 TEST(SplineTest, BasicInterpolation) {
@@ -14,7 +15,7 @@ TEST(SplineTest, BasicInterpolation) {
     /* create test position and interpolate */
     double xt = 0.0;
     double yt;
-    spline(n, x, y, 1, &xt, &yt);
+    spline::spline(n, x, y, 1, &xt, &yt);
 
     /* Check that the interpolated value at x=0 is approximately 0 */
     EXPECT_NEAR(yt, 0.0, 1e-5);

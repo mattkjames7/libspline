@@ -6,6 +6,7 @@
 #include <math.h>
 #endif
 
+namespace spline {
 
 class Spline {
 	public:
@@ -19,3 +20,4 @@ class Spline {
 		double *x_, *y_;
 		bool del_;
 };
+} // namespace spline
