@@ -25,16 +25,7 @@ add_executable(test_spline test.cc)
 
 
 # Determine which datetime library to link against
-set(SPLINE_LIB_TARGET "")
-if(WIN32)
-    set(SPLINE_LIB_TARGET libspline_shared)
-elseif(TARGET libspline_shared)
-    set(SPLINE_LIB_TARGET libspline_shared)
-elseif(TARGET libspline_static)
-    set(SPLINE_LIB_TARGET libspline_static)
-else()
-    message(FATAL_ERROR "No spline library target found")
-endif()
+set(SPLINE_LIB_TARGET libspline)
 
 target_link_libraries(test_spline
     gtest_main
@@ -60,7 +51,7 @@ if(BUILD_SHARED_LIBS AND WIN32)
     # Copy the spline DLL to the test exe dir
     add_custom_command(TARGET test_spline POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:libspline_shared>
+            $<TARGET_FILE:libspline>
             $<TARGET_FILE_DIR:test_spline>
     )
     # Copy GoogleTest DLLs to the test exe dir (they're in bin/)
