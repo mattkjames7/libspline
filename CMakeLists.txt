@@ -9,7 +9,7 @@ project(
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(BUILD_TESTING "Build the testing tree." ON)
+option(ENABLE_TESTS "Build the testing tree." ON)
 option(BUILD_SHARED_LIBS "Build shared library" ON)
 
 if (NOT CMAKE_BUILD_TYPE)
@@ -22,7 +22,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 add_subdirectory(src)
 
-if (BUILD_TESTING)
+if (ENABLE_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()

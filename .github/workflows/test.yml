@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Library
         run: |
-          cmake -S . -B build -G Ninja -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX="$PWD/install"
+          cmake -S . -B build -G Ninja -DENABLE_TESTS=ON -DCMAKE_INSTALL_PREFIX="$PWD/install"
           cmake --build build -j$(nproc)
 
       - name: Run Tests
@@ -60,7 +60,7 @@ jobs:
       - name: Build (Ninja in MSYS2 shell)
         shell: msys2 {0}
         run: |
-          cmake -S . -B build -G Ninja -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX="C:/spline/install"
+          cmake -S . -B build -G Ninja -DENABLE_TESTS=ON -DCMAKE_INSTALL_PREFIX="C:/spline/install"
           cmake --build build -j
 
       - name: Run Tests (MSYS2 shell)
@@ -89,7 +89,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja -DBUILD_TESTING=ON -DCMAKE_INSTALL_PREFIX="$PWD/install"
+          cmake -S . -B build -G Ninja -DENABLE_TESTS=ON -DCMAKE_INSTALL_PREFIX="$PWD/install"
           cmake --build build -j
 
       - name: Run Tests
