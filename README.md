@@ -7,15 +7,9 @@ Simple spline library in C++
 In Linux and Mac, run
 
 ```bash
-make
-
-sudo make install
-```
-
-Under windows, run the batch file:
-
-```powershell
-.\compile.bat
+cmake -B build -GNinja -DENABLE_TESTS=OFF -DBUILD_SHARED_LIBS=ON
+cmake --build build
+sudo cmake --install build
 ```
 
 ## Usage
@@ -62,7 +56,7 @@ int main() {
 	printf("]\n");
 
 	/* load the spline object */
-	Spline s(n,x,y);
+	spline::Spline s(n,x,y);
 
 	/* create test position and interpolate */
 	double xt, yt;
@@ -83,7 +77,7 @@ g++ cppexample.cc -o cppexample -lspline
 ```
 ### C
 
-This is a C example, which would work in C++ also. The `spline()` wrapper function can also be linked to other languages.
+This is a C example, which would work in C++ also. The `libspline_spline()` wrapper function can also be linked to other languages.
 
 ```c
 /* contents of cexample.c */
@@ -124,7 +118,7 @@ int main() {
 	/* create test position and interpolate */
 	double xt, yt;
 	xt = 0.0;
-	spline(n,x,y,1,&xt,&yt);
+	libspline_spline(n,x,y,1,&xt,&yt);
 	printf("y = %3.1f at x = %3.1f\n",yt,xt);
 
 

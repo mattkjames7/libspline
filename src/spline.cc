@@ -1,5 +1,7 @@
 #include "spline.h"
 
+namespace spline {
+
 Spline::Spline(int n, double *x, double *y) {
 
 	/* set n_ equal to n-1 */
@@ -161,3 +163,5 @@ void Spline::Interpolate(int n, double *x, double *y) {
 	delete[] I;
 
 }
+
+} // namespace spline
