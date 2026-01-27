@@ -1,9 +1,6 @@
 name: "Build and Test"
 
 on: 
-  push:
-    #   tags:
-    #   - "v*.*.*"
   pull_request:
   workflow_dispatch:
   schedule:
