@@ -3,6 +3,18 @@ name: "Build and Test"
 on: 
   pull_request:
   workflow_dispatch:
+    inputs:
+      target_job:
+        description: "Choose which job to run"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - build_linux
+          - build_windows
+          - build_windows_msvc
+          - build_macos
   schedule:
     - cron: '0 0 1 * *'  # Runs at midnight UTC on the 1st of every month
 
@@ -10,6 +22,7 @@ run-name: "Build and Test Library"
 
 jobs:
   build_linux:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_job == 'all' || github.event.inputs.target_job == 'build_linux' }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout current branch
@@ -36,6 +49,7 @@ jobs:
 
 
   build_windows:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_job == 'all' || github.event.inputs.target_job == 'build_windows' }}
     runs-on: "windows-latest"
     steps:
       - name: Checkout current branch
@@ -71,7 +85,37 @@ jobs:
         run: cmake --install build
 
 
+  build_windows_msvc:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_job == 'all' || github.event.inputs.target_job == 'build_windows_msvc' }}
+    runs-on: "windows-latest"
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Configure (MSVC)
+        shell: pwsh
+        run: |
+          cmake -S . -B build -DENABLE_TESTS=ON -DCMAKE_INSTALL_PREFIX="$PWD/install"
+
+      - name: Build (MSVC)
+        shell: pwsh
+        run: |
+          cmake --build build --config Release
+
+      - name: Run Tests (MSVC)
+        shell: pwsh
+        run: |
+          ctest --output-on-failure --test-dir build -C Release
+
+      - name: Install (MSVC)
+        shell: pwsh
+        run: cmake --install build --config Release
+
+
   build_macos:
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_job == 'all' || github.event.inputs.target_job == 'build_macos' }}
     runs-on: "macos-latest"
     steps:
       - name: Checkout current branch

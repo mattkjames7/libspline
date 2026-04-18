@@ -3,7 +3,14 @@ if (BUILD_SHARED_LIBS)
     add_library(libspline SHARED)
     add_library(spline::spline ALIAS libspline)
     set_target_properties(libspline PROPERTIES OUTPUT_NAME spline)
-    set_target_properties(libspline PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+    set_target_properties(libspline PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+    )
+    if (WIN32)
+        set_target_properties(libspline PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    endif()
     target_sources(libspline PRIVATE
         libspline.cc
         spline.cc

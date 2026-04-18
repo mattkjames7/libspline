@@ -8,7 +8,7 @@ extern "C" {
 
 #define LIBSPLINE_VERSION_MAJOR 0
 #define LIBSPLINE_VERSION_MINOR 3
-#define LIBSPLINE_VERSION_PATCH 0
+#define LIBSPLINE_VERSION_PATCH 1
 
 
 void libspline_spline(int n0, double *x0, double *y0, 
