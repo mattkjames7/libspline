@@ -30,8 +30,11 @@ set(SPLINE_LIB_TARGET libspline)
 target_link_libraries(test_spline
     gtest_main
     ${SPLINE_LIB_TARGET}
-    m
 )
+
+if(NOT WIN32)
+    target_link_libraries(test_spline m)
+endif()
 
 # Include headers
 target_include_directories(test_spline PRIVATE ${CMAKE_SOURCE_DIR}/include)
